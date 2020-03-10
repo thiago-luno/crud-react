@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import orderBy from 'lodash/orderBy'
+import Navbar from './components/Navbar/navbar';
 import Table from './components/Tabela/table';
 import Search from './components/Tabela/search';
 import Form from './components/Tabela/form';
+import PopUp from './util/PopUp';
 
 class App extends Component {
 
@@ -23,7 +25,8 @@ class App extends Component {
   removerContratante = (index) => {
       this.setState(
         { contratantes : this.state.contratantes.filter( (item,  pos) => index !== pos) }
-      )
+      );
+      PopUp.exibePopup('error', 'Removido com sucesso');
   };
 
   ordernar = (column) => {
@@ -41,13 +44,22 @@ class App extends Component {
     })
   }
 
+  submitListener = contratante => {
+    this.setState(
+      { contratantes : [...this.state.contratantes, contratante] }
+    )
+  }
+
   render() {
     return (
-      <div className="container">
-        <Search query = { this.state.query } change={ this.onQueryChange }/>
-        <Table  contratantes={ this.state.contratantes } removerContratante = { this.removerContratante } ordernar={ this.ordernar } query = { this.state.query }/>
-        <Form />
-      </div>
+      <Fragment>
+        <Navbar />
+        <div className="container">
+          <Search query = { this.state.query } change={ this.onQueryChange }/>
+          <Table  contratantes={ this.state.contratantes } removerContratante = { this.removerContratante } ordernar={ this.ordernar } query = { this.state.query }/>
+          <Form  submitListener={this.submitListener}/>
+        </div>
+      </Fragment>
     );
   }
 }
