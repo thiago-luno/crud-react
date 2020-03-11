@@ -20,7 +20,7 @@ class Table extends Component {
         });
 
         return (
-            <table className="centered highlight">
+            <table className="highlight">
                 <Thead ordernar = { ordernar }/>
 
                 <tbody>{ rows }</tbody>

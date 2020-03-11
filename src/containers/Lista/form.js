@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormValidator from '../../util/FormValidator';
-import PopUp from '../../util/PopUp';
+import PopUp from '../../components/PopUp/PopUp';
 
 export class Form extends Component {
 

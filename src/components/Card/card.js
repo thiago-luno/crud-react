@@ -8,7 +8,7 @@ export class Card extends Component {
                 <div className="col s12 m12">
                     <div className="card">
                         <div className="card-image">
-                            <img src={this.props.img} />
+                            <img src={this.props.img} alt={ this.props.title }/>
                             <span className="card-title">{ this.props.title }</span>
                         </div>
                         <div className="card-content">
