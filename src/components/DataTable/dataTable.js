@@ -6,23 +6,19 @@ class DataTable extends Component {
         super(props);
         this.colunas = [];
         this.linhas = [];
-        this.linha = {};
     }
 
     montarLinhas() {
-        let linhas = [];
-        this.props.colunas.forEach(coluna => {
-            this.props.dado.forEach(dado => {
-
-                let linha = {};
-
+        this.props.dado.forEach(dado => {
+            
+            let linha = {};
+            
+            this.props.colunas.forEach(coluna => {
                 linha[coluna] = dado[coluna];
-                this.linhas.push(linha);
             });
 
+            this.linhas.push(linha);
         });
-
-        console.log('this.linhas', linhas)
     }
 
     render() {
@@ -43,8 +39,20 @@ class DataTable extends Component {
                     </thead>
 
                     <tbody>       
-                        {this.linhas.map(linha => {
-                            return <tr><td>{linha.nome}</td></tr>
+                        {this.linhas.map((linha,index) => {
+
+                            let tr = [];
+                            let td = [];
+                            let count = 0;
+
+                            for (let key in linha) {
+                                td.push(<td key={count}>{linha[key]}</td>);
+                                count++;
+                            }
+
+                            tr.push(<tr key={index}>{td}</tr>)
+
+                           return tr;
                         })}
                     </tbody>
                 </table>

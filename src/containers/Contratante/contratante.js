@@ -29,7 +29,7 @@ class Contratante extends Component {
                     <div className="container">
                         <h3 className="section-title">Clientes</h3>
 
-                            <DataTable  dado={this.state.contratantes} colunas={['nome']}/>
+                            <DataTable  dado={this.state.contratantes} colunas={['telefone','nome','email']}/>
                            
                     </div>
                 </div>
